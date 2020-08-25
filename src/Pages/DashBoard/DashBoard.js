@@ -1,16 +1,13 @@
 import React, { useState , useEffect} from "react";
-import {getPlaylist} from '../../Api/Api'
+import Card from '../../Pages/DashBoard/Card/Card'
 
 function DashBoard() {
-
-  useEffect(()=>{
-      getPlaylist()
-  },[])
 
  
   return (
     <div>
-      <p>DASHBOARD</p>
+      <Card/>
+      SIAMO SU DASHBOARD
     </div>
   );
 }

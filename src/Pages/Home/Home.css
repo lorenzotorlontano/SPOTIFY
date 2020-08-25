@@ -1,0 +1,67 @@
+
+body{
+    min-height: 100vh;
+}
+
+.logoHeader{
+    width: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.wrapperHome{
+    background: #2D46B9;
+}
+
+.contBodyHome{
+    height: 100vh;
+    text-align: center;
+    background: url(https://www.scdn.co/i/home/lieVariants/bursts-tablet.svg) no-repeat;
+    background-position: right 40% center;
+    background-size: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.button:hover{
+    background-color: #FFF;
+}
+
+.button{
+    text-decoration: none;
+    color: #2940a8;
+    background-color: #1ED760;
+    line-height: 16px;
+    letter-spacing: 1.4px;
+    padding: 16px 40px 16px;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 500px;
+    padding: 16px 48px 18px;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    letter-spacing: 2px;
+    min-width: 160px;
+    text-transform: uppercase;
+    white-space: normal;
+    font-weight: 700;
+
+}
+
+.titleHome{
+    color: #1ED760;
+    font-size: 104px;
+    margin-bottom: 40px;
+    line-height: 1;
+}
+
+.subtitleHome{
+    color: #1ED760;
+    font-size: 18px;
+    margin-bottom: 40px;
+    line-height: 24px;
+    margin-top: 0;
+    font-weight: 400;
+}

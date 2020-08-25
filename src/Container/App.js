@@ -3,9 +3,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import DashBoard from "../Pages/DashBoard/DashBoard";
 import Hash from "../Pages/Hash/Hash";
 import Home from "../Pages/Home/Home";
+import Header from "../Components/Header/Header";
 
 export default function App() {
-  return (
+  return (    
+    <>
+  <Header/>
     <Router>
       <Switch>
         <Route path="/hash">
@@ -19,5 +22,6 @@ export default function App() {
         </Route>
       </Switch>
     </Router>
+    </>
   );
 }
