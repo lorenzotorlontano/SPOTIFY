@@ -1,19 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { getPlaylist } from "../../../Api/Api";
-import { useLocation } from 'react-router-dom';
+// import React, { useState, useEffect } from "react";
+// import { getPlaylist } from "../../../Api/Api";
+// import { useLocation } from 'react-router-dom';
+// import DashBoard from '../../../Pages/DashBoard/DashBoard'
 
-function Card() {
-  const [artist, setArtist] = useState();
-  const location = useLocation();
+// function Card() {
+//   const [user, setUser] = useState();
+//   const location = useLocation();
 
-  
-  useEffect(() => {
-      console.log(location.pathname)
-    getPlaylist()
-    console.log(getPlaylist());
-  },[]);
+//   useEffect(() => {
+//     const resp = getPlaylist().then((re) => {
+//       setUser(re.data.items[0])
+//     })
+//   }, []);
 
-  return <div></div>;
-}
+//   console.log(user)
 
-export default Card;
+
+//   return <div>
+//     <DashBoard
+//       userData={user}
+//     />
+//   </div>;
+// }
+
+// export default Card;

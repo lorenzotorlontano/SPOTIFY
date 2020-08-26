@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import {
   authEndpoint,
   clientId,
@@ -36,6 +37,11 @@ const useStyles = makeStyles((theme) => ({
 function Header() {
   const classes = useStyles();
 
+
+  console.log(window.location.pathname)
+
+  let currentPath = window.location.pathname
+
   return (
     <>
       <AppBar
@@ -63,7 +69,8 @@ function Header() {
               style={{ textDecoration: "none", color: "white" }}
               href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`}
             >
-              Login
+              {console.log('stiamo consologgando currentPath',currentPath)}
+              {currentPath === '/dashboard' ? <AccountCircleIcon/> : <p>Login</p> }
             </a>
           </Button>
         </Toolbar>
