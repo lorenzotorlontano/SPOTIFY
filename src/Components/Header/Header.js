@@ -8,6 +8,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { getPlaylist } from "../../Api/Api";
+import DeleteIcon from '@material-ui/icons/Delete';
 import {
   authEndpoint,
   clientId,
@@ -74,15 +75,23 @@ function Header() {
           </Typography>
           <Button color="inherit">
             {console.log('SCALE MOVBILI', user)}
-            <a
-              style={{ textDecoration: "none", color: "white" }}
-              href={currentPath === '/dashboard' ? "/" : `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`}
-            >
-              {currentPath === '/dashboard' ? <AccountCircleIcon /> : <p>Login</p>}
+            <div className="contAvatarSurname">
+              <a
+                style={{ textDecoration: "none", color: "white" }}
+                href={currentPath === '/dashboard' ? "/" : `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`}
+              >
+                {currentPath === '/dashboard' ? <Button
+                  variant="contained"
+                  color="default"
+                  className={classes.button}
+                  startIcon={<AccountCircleIcon />}
+                >
+                    {user !== undefined & currentPath === '/dashboard' ? <span className="userName">{user.owner.display_name}</span> : null}
+                </Button> : <span>Login</span>}
+              
 
-             {user !== undefined & currentPath === '/dashboard' ? user.owner.display_name : null}
-
-            </a>
+              </a>
+            </div>
           </Button>
         </Toolbar>
       </AppBar>
