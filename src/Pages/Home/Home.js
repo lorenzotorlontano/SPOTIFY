@@ -40,14 +40,14 @@ function Home() {
 
   return (
     <div className="wrapperHome">
-      <Header/>
+      <Header />
       <div className="contBodyHome">
-        <h1 className="titleHome">Listening is<br/> everything</h1>
+        <h1 className="titleHome">Listening is<span style={{ color: '#2D46B9' }}>-----</span><br /><span style={{ color: '#2D46B9' }}>-----</span> everything</h1>
         <h4 className="subtitleHome">
           Milioni di brani e podcast. Senza alcuna carta di credito.
         </h4>
         <a
-           href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`}
+          href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`}
           id="generic-btn-premium"
           role="button"
           className="button"

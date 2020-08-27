@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { getPlaylist } from "../../Api/Api";
 import {
   authEndpoint,
   clientId,
@@ -22,6 +23,8 @@ import {
   useHistory,
 } from "react-router-dom";
 
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -35,12 +38,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Header() {
-  const classes = useStyles();
 
-
-  console.log(window.location.pathname)
-
+  const [user, setUser] = useState();
   let currentPath = window.location.pathname
+
+  useEffect(() => {
+    const resp = getPlaylist().then((re) => {
+      setUser(re.data.items[0])
+    })
+  }, [currentPath]);
+
+  const classes = useStyles();
 
   return (
     <>
@@ -65,12 +73,15 @@ function Header() {
             </a>
           </Typography>
           <Button color="inherit">
+            {console.log('SCALE MOVBILI', user)}
             <a
               style={{ textDecoration: "none", color: "white" }}
-              href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`}
+              href={currentPath === '/dashboard' ? "/" : `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`}
             >
-              {console.log('stiamo consologgando currentPath',currentPath)}
-              {currentPath === '/dashboard' ? <AccountCircleIcon/> : <p>Login</p> }
+              {currentPath === '/dashboard' ? <AccountCircleIcon /> : <p>Login</p>}
+
+             {user !== undefined & currentPath === '/dashboard' ? user.owner.display_name : null}
+
             </a>
           </Button>
         </Toolbar>

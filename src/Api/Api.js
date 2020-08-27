@@ -20,7 +20,17 @@ const axiosInstance = Axios.create({
   },
 });
 
+const secondInstance = Axios.create({
+  baseURL: "https://api.spotify.com/v1",
+  headers: {
+    "Authorization": "Bearer" + " " +  token ,
+  },
+});
+
 export async function getPlaylist() {
   return axiosInstance.get(`/playlists`);
 }
 
+export async function getMe() {
+  return secondInstance.get(`/me`);
+}
