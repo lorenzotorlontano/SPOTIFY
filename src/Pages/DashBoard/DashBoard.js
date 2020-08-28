@@ -3,12 +3,13 @@ import Card from '../../Pages/DashBoard/Card/Card'
 import { getPlaylist } from "../../Api/Api";
 import { useLocation } from 'react-router-dom';
 import Header from '../../Components/Header/Header'
+import '../DashBoard/DashBoard.css'
 
 function DashBoard() {
 
   return (
-    <div>
-
+    <div className="wrapperDashboard">
+      <Card/>
     </div>
   );
 }

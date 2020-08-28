@@ -1,0 +1,35 @@
+
+.contCard{
+    height: 100%;
+}
+
+.container{
+    position: absolute;
+    top: 60px;
+    height: 100%;
+    padding-top: 60px;
+    display: flex;
+    bottom: 0px;
+    background-color: #121212;
+    color: white;
+}
+
+
+.contImgCard{
+    background-color: #282828;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 10px;
+}
+
+
+.imgCard{
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}

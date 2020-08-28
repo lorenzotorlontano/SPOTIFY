@@ -27,10 +27,22 @@ const secondInstance = Axios.create({
   },
 });
 
+const terzaInstance = Axios.create({
+  baseURL: "https://api.spotify.com/v1",
+  headers: {
+    "Authorization": "Bearer" + " " +  token ,
+  },
+});
+
+
 export async function getPlaylist() {
   return axiosInstance.get(`/playlists`);
 }
 
 export async function getMe() {
   return secondInstance.get(`/me`);
+}
+
+export async function getAlbums() {
+  return terzaInstance.get(`/albums?ids=41MnTivkwTO3UUJ8DrqEJJ,6JWc4iAiJ9FjyK0B59ABb4,6UXCm6bOO4gFlDQZV5yL37`);
 }

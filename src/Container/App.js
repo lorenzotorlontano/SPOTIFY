@@ -7,7 +7,7 @@ import Header from "../Components/Header/Header";
 
 export default function App() {
   return (    
-    <>
+    <div>
   <Header/>
     <Router>
       <Switch>
@@ -22,6 +22,6 @@ export default function App() {
         </Route>
       </Switch>
     </Router>
-    </>
+    </div>
   );
 }

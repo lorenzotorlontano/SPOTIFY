@@ -52,7 +52,7 @@ function Header() {
   const classes = useStyles();
 
   return (
-    <>
+    <div className="wrapperHeader">
       <AppBar
         style={{ color: "white", backgroundColor: "black", position: "fixed" }}
         position="static"
@@ -74,7 +74,6 @@ function Header() {
             </a>
           </Typography>
           <Button color="inherit">
-            {console.log('SCALE MOVBILI', user)}
             <div className="contAvatarSurname">
               <a
                 style={{ textDecoration: "none", color: "white" }}
@@ -88,14 +87,12 @@ function Header() {
                 >
                     {user !== undefined & currentPath === '/dashboard' ? <span className="userName">{user.owner.display_name}</span> : null}
                 </Button> : <span>Login</span>}
-              
-
               </a>
             </div>
           </Button>
         </Toolbar>
       </AppBar>
-    </>
+    </div>
   );
 }
 
