@@ -4,11 +4,11 @@ import DashBoard from "../Pages/DashBoard/DashBoard";
 import Hash from "../Pages/Hash/Hash";
 import Home from "../Pages/Home/Home";
 import Header from "../Components/Header/Header";
-
+import Tracks from '../Pages/DashBoard/Tracks/Tracks'
 export default function App() {
   return (    
     <div>
-  <Header/>
+  {/* <Header/> */}
     <Router>
       <Switch>
         <Route path="/hash">
@@ -16,6 +16,9 @@ export default function App() {
         </Route>
         <Route path="/dashboard">
           <DashBoard />
+        </Route>
+        <Route path="/Tracks/:id">
+          <Tracks />
         </Route>
         <Route path="/">
           <Home />

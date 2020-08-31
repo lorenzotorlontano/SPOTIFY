@@ -10,10 +10,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function Card() {
   const [albums, setAlbums] = useState();
-
+  const [overlay, setOverlay] = useState('none')
+  
 
   useEffect(() => {
     const res = getAlbums().then((re) => {
@@ -21,24 +23,36 @@ function Card() {
     })
   }, []);
 
+  const showOverlay = () => {
+    setOverlay('')
+  }
 
-  console.log('sto consollogando albumn', albums)
+  console.log(' sto consologgando ALBUMS  :   ', albums);
 
   return (
     <Grid className="container" container >
       {albums ? albums.map((val, index) => {
         return (
           <Grid className="contCard" item xs={4}>
-            <div className="contImgCard" >
-              <img className="imgCard" src={val.images[1].url} />
-              <p>{val.label}</p>
-              <p>{val.name}</p>
-              <p>total tracks:  {val.total_tracks}</p>
-              <p>ID: {val.id}</p>
-              <p>{val.copyrights[0].text}</p>
-              <p>Type : {val.type}</p>
-              <p>Date: {val.release_date}</p>
+
+            <div onMouseLeave={() => setOverlay('none')} onMouseOver={() => showOverlay()} className="contImgCard" >
+              <Link to={`/Tracks/${val.id}`}>
+                {console.log("sto facendo il console.log di sto cazz di id ",val.id)}
+                <img className="imgCard" src={val.images[1].url} />
+              </Link>
+              <div style={{
+                display: overlay, transition: '3s',
+              }}>
+                <p>{val.label}</p>
+                <p>{val.name}</p>
+                <p>total tracks:  {val.total_tracks}</p>
+                <p>ID: {val.id}</p>
+                <p>{val.copyrights[0].text}</p>
+                <p>Type : {val.type}</p>
+                <p>Date: {val.release_date}</p>
+              </div>
             </div>
+
           </Grid>
         )
       }
