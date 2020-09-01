@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -14,8 +14,28 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
+import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded';
+import Button from '@material-ui/core/Button';
+import { getPlaylist } from "../../../Api/Api";
+import {
+  authEndpoint,
+  clientId,
+  redirectUri,
+  scopes,
+} from "../../../Config/Config";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme) => ({
+
+
   grow: {
     flexGrow: 1,
   },
@@ -79,10 +99,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Topbar() {
+const useAppBarStyle = makeStyles({
+  root: {
+    background: 'transparent !important',
+    boxShadow: 'none',
+  },
+});
+
+export default function PrimarySearchAppBar() {
   const classes = useStyles();
+  const appBarClasses = useAppBarStyle();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    const resp = getPlaylist().then((re) => {
+      setUser(re.data.items[0])
+    })
+  }, []);
+
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -120,86 +156,104 @@ export default function Topbar() {
     </Menu>
   );
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  );
+
+
+  const style = {
+    backgroundColor: 'grey',
+    // backgroundImage: 'linear-gradient(to right, blue, red)'
+  }
+
+  const icon = {
+    border: 'none',
+    height: '26px',
+    padding: '5px',
+    width: '26px',
+    borderRadius: '50%',
+    backgroundColor: 'rgba(0,0,0,.7)',
+    color: '#fff',
+    alignItems: 'center',
+    position: 'relative',
+    cursor: 'pointer',
+    display: 'inlineFlex',
+    justifyContent: 'center',
+    webkitBoxAlign: 'center',
+  }
+
+  const button = {
+    backgroundColor: 'rgba(0,0,0,.7)',
+    border: '1px solid hsla(0,0%,100%,.7)',
+    borderRadius: '500px',
+    fontSize: '2px',
+    fontWeight: '200',
+    color: 'white',
+    letterSpacing: '1.76px',
+    textTransform: 'uppercase',
+    padding: '8px 34px',
+    display: 'inline-block',
+    cursor: 'pointer',
+    textAlign: 'center',
+    transition: 'all 33ms cubic-bezier(.3,0,0,1)',
+    willChange: 'transform',
+    fontFamily: 'spotify-circular,spotify-circular-cyrillic,spotify-circular-arabic,spotify-circular-hebrew,Helvetica Neue,Helvetica,Arial,Hiragino Kaku Gothic Pro,Meiryo,MS Gothic,sans-serif',
+    font: '400 13.3333px Arial',
+    margin: '0em',
+    alignItems: 'flex-start',
+    textIndent: '0px',
+    textShadow: 'none',
+    wordSpacing: 'normal',
+    appearance: 'button',
+    webkitWritingMode: 'horizontal-tb !important',
+    textRendering: 'auto',
+  }
+
+  const userbutton = {
+    backgroundColor: 'rgba(0,0,0,.7)',
+    borderRadius: '500px',
+    textTransform: 'lowercase',
+    fontSize: '2px',
+    fontWeight: '200',
+    color: 'white',
+    letterSpacing: '1.76px',
+    cursor: 'pointer',
+    textAlign: 'center',
+    willChange: 'transform',
+    font: '400 13.3333px Arial',
+  }
+
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar classes={{ root: appBarClasses.root }} style={style} position="static">
         <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="inherit"
+            aria-label="open drawer"
+
+          >
+            <Link to="/dashboard">
+              <ArrowBackIosRoundedIcon style={icon} />
+            </Link>
+          </IconButton>
+
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <Link>
+              <ArrowForwardIosRoundedIcon style={icon} />
+            </Link>
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
+
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+            <IconButton aria-label="show 17 new notifications" >
+              <Button style={button} disableElevation>
+                Update
+              </Button>
             </IconButton>
             <IconButton
               edge="end"
@@ -207,25 +261,30 @@ export default function Topbar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
             >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
+              <div>
+                <a
+                  style={{ textDecoration: "none", color: "white" }}
+                  href={`${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`}
+                >
+                  <Button
+                    variant="contained"
+                    color="default"
+                    style={userbutton}
+                    startIcon={<div style={{
+                      backgroundColor: '#333', display: 'flex', justifyContent: 'center', borderRadius: '50%', width: ' 100%',
+                      height: ' 100%', padding: '0px', margin: '0px'
+                    }}><AccountCircleIcon /></div>}
+                  >
+                    {console.log('stop porco del cazzpo', user)}
+                    <span style={{}} >{user ? user.owner.display_name : null}</span >
+                  </Button>
+                </a>
+              </div>
             </IconButton>
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
       {renderMenu}
     </div>
   );

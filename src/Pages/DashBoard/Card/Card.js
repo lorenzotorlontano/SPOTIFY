@@ -15,13 +15,20 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function Card() {
   const [albums, setAlbums] = useState();
   const [overlay, setOverlay] = useState('none')
-  
+  const [onDetailScreen, setOnDetailScreen] = useState(false);
+
 
   useEffect(() => {
     const res = getAlbums().then((re) => {
       setAlbums(re.data.albums)
     })
   }, []);
+
+  useEffect(() => {
+    setOnDetailScreen(true)
+  }, []);
+
+
 
   const showOverlay = () => {
     setOverlay('')
@@ -37,7 +44,7 @@ function Card() {
 
             <div onMouseLeave={() => setOverlay('none')} onMouseOver={() => showOverlay()} className="contImgCard" >
               <Link to={`/Tracks/${val.id}`}>
-                {console.log("sto facendo il console.log di sto cazz di id ",val.id)}
+                {console.log("sto facendo il console.log di sto cazz di id ", val.id)}
                 <img className="imgCard" src={val.images[1].url} />
               </Link>
               <div style={{
