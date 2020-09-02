@@ -7,17 +7,10 @@ import Header from "../Components/Header/Header";
 import Tracks from '../Pages/DashBoard/Tracks/Tracks'
 export default function App() {
 
-  const str = window.location.pathname
-  const splittedString = str.split("/")
-
-
 
   return (
     <div>
-      {splittedString[1] !== "Tracks" &&
-        <Header />
-      }
-   
+      <Header />
       <Router>
         <Switch>
           <Route path="/hash">

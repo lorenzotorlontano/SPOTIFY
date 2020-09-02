@@ -35,7 +35,6 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme) => ({
 
-
   grow: {
     flexGrow: 1,
   },
@@ -98,7 +97,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
 const useAppBarStyle = makeStyles({
   root: {
     background: 'transparent !important',
@@ -276,7 +274,6 @@ export default function PrimarySearchAppBar() {
                       height: ' 100%', padding: '0px', margin: '0px'
                     }}><AccountCircleIcon /></div>}
                   >
-                    {console.log('stop porco del cazzpo', user)}
                     <span style={{}} >{user ? user.owner.display_name : null}</span >
                   </Button>
                 </a>

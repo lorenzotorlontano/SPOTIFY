@@ -34,7 +34,6 @@ function Card() {
     setOverlay('')
   }
 
-  console.log(' sto consologgando ALBUMS  :   ', albums);
 
   return (
     <Grid className="container" container >
@@ -44,7 +43,6 @@ function Card() {
 
             <div onMouseLeave={() => setOverlay('none')} onMouseOver={() => showOverlay()} className="contImgCard" >
               <Link to={`/Tracks/${val.id}`}>
-                {console.log("sto facendo il console.log di sto cazz di id ", val.id)}
                 <img className="imgCard" src={val.images[1].url} />
               </Link>
               <div style={{

@@ -43,6 +43,8 @@ function Header() {
   const [user, setUser] = useState();
   let currentPath = window.location.pathname
 
+  console.log("fjdsbfhdbfhdfbgdfgbdfshbghbshfdsbjgbgjdbj",currentPath)
+
   useEffect(() => {
     const resp = getPlaylist().then((re) => {
       setUser(re.data.items[0])
@@ -50,8 +52,15 @@ function Header() {
   }, [currentPath]);
 
   const classes = useStyles();
+  
+  const splittedString = currentPath.split("/")
+  console.log(splittedString)
+
 
   return (
+    <>
+    {
+       splittedString[1] !== "Tracks" && (
     <div className="wrapperHeader">
       <AppBar
         style={{ color: "white", backgroundColor: "black", position: "fixed" }}
@@ -93,6 +102,9 @@ function Header() {
         </Toolbar>
       </AppBar>
     </div>
+    )
+  }
+    </>
   );
 }
 
