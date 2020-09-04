@@ -43,7 +43,6 @@ function Header() {
   const [user, setUser] = useState();
   let currentPath = window.location.pathname
 
-  console.log("fjdsbfhdbfhdfbgdfgbdfshbghbshfdsbjgbgjdbj",currentPath)
 
   useEffect(() => {
     const resp = getPlaylist().then((re) => {
@@ -54,7 +53,6 @@ function Header() {
   const classes = useStyles();
   
   const splittedString = currentPath.split("/")
-  console.log(splittedString)
 
 
   return (

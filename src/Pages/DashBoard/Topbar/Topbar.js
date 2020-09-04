@@ -99,12 +99,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 const useAppBarStyle = makeStyles({
   root: {
-    background: 'transparent !important',
     boxShadow: 'none',
   },
 });
 
 export default function PrimarySearchAppBar() {
+
+
   const classes = useStyles();
   const appBarClasses = useAppBarStyle();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -157,8 +158,9 @@ export default function PrimarySearchAppBar() {
 
 
   const style = {
-    backgroundColor: 'grey',
-    // backgroundImage: 'linear-gradient(to right, blue, red)'
+    display: 'flex',
+    width: '83.333333333%',
+    backgroundColor: '#333',
   }
 
   const icon = {
@@ -220,8 +222,8 @@ export default function PrimarySearchAppBar() {
 
 
   return (
-    <div className={classes.grow}>
-      <AppBar classes={{ root: appBarClasses.root }} style={style} position="static">
+    <>
+      <AppBar classes={{ root: appBarClasses.root }} style={style} position="fixed">
         <Toolbar>
           <IconButton
             edge="start"
@@ -298,6 +300,6 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </AppBar>
       {renderMenu}
-    </div>
+    </>
   );
 }

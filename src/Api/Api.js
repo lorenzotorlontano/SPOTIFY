@@ -12,7 +12,6 @@ if (bracketsToken !== null)
 
 }
 
-
 const axiosInstance = Axios.create({
   baseURL: "https://api.spotify.com/v1/me",
   headers: {
@@ -51,3 +50,10 @@ export async function getAlbum(id) {
   return terzaInstance.get(`/albums/${id}`);
 }
 
+export async function getCategories() {
+  return terzaInstance.get(`/browse/categories`);
+}
+
+export async function getNextCategories(urlNextTwenty) {
+  return Axios.get(urlNextTwenty, {headers: {"Authorization" : "Bearer" + " " +  token }});
+} 

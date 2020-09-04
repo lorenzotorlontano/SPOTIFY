@@ -18,9 +18,6 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import '../../Pages/DashBoard/Tracks/Tracks.css'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link,
     useHistory,
 } from "react-router-dom";
